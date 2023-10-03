@@ -1,0 +1,35 @@
+version: "3.1"
+
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: maliciel_user
+      MONGO_INITDB_ROOT_PASSWORD: maliciel_password
+      MONGO_INITDB_DATABASE: maliciel_db
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - mongodbdata:/data/db
+
+  server:
+    build:
+      context: ./Server/
+      dockerfile: Dockerfile
+    image: python:3.9.1-slim-buster
+    restart: unless-stopped
+    environment:
+      MONGODB_DATABASE: maliciel_db
+      MONGODB_USERNAME: maliciel_user
+      MONGODB_PASSWORD: maliciel_password
+      MONGODB_HOSTNAME: db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+volumes:
+  mongodbdata:
