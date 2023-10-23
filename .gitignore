@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+x64/
+.vs/
+*.obj
+*.dll
+*.exe
